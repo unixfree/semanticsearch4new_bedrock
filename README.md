@@ -58,60 +58,25 @@ Quick tips on Python virtual environments (please folow this unless you are an e
 
 - This example always uses and assumes secure connections to your couchbase instance, you should verify your firewall will pass at least 18091 (Management port), 18094 (Search service), 11210 / 11207 (Data service)
 
-4. Create FTS Index from "article-index.json" at Couchbase or Capella 
+4. Create Bucket/Scope/Collection at Couchbase or Capella 
+
+5. Create FTS Index from "article_idx.json" at Couchbase or Capella 
  > Data Tools - Search
   - Advanced Mode
-  - Import from File < `article-index.json` 
+  - Import from File < `article_idx.json` 
   - Select "Bucket" and "Scope"
   - Create Index
 
-5. Run Cralwing, Vectorize and Load to Couchbase 
+6. Run Cralwing, Vectorize and Load to Couchbase 
 
   `python3 import_news.py`
 
-6. Run semantic Search
+7. Run semantic Search
 
-  `python3 search_vector.py'
-   Enter text to vector search in article : 김정숙  
+  `python3 search_vector.py` <br>
+  
+   Enter text to vector search in article : 김정숙  <br>
    Enter text to test search in title : 청문회
-
-7. Result Samples
-
-FTS Vector Search results:
-ID: article_Wrr2pIKT, Score: 0.7816184163093567
-Title: [인사] 한국연구재단
-Date: 2024-08-05 09:36:08
-Url: https://n.news.naver.com/mnews/article/138/0002179152
---------
-ID: article_6srcs81Y, Score: 0.7801542282104492
-Title: 청문회 D-3...'출근길 말말말'로 본 유상임 과기정통부 후보자는
-Date: 2024-08-05 17:16:19
-Url: https://n.news.naver.com/mnews/article/138/0002179231
---------
-ID: article_T4BClMGY, Score: 0.7796298861503601
-Title: 정부, 이공계 대학원생 인건비 제도개선한다
-Date: 2024-08-05 14:00:15
-Url: https://n.news.naver.com/mnews/article/138/0002179194
---------
-ID: article_WdDR5VgQ, Score: 0.776661217212677
-Title: “더위 피했더니 사람 너무많네”…캐논, ‘사이니지 혼잡도 안내’ 공간관리 ‘척척’
-Date: 2024-08-05 07:01:10
-Url: https://n.news.naver.com/mnews/article/138/0002179138
---------
-ID: article_5JD050s0, Score: 0.7757707238197327
-Title: [날씨] 월요일 체감온도 35도 '사우나 폭염'…전국 곳곳 소나기
-Date: 2024-08-05 09:22:09
-Url: https://n.news.naver.com/mnews/article/138/0002179146
---------
-
-SQL++ Hybrid Search results: QueryResult:<couchbase.n1ql.N1QLRequest object at 0x109d2fc50>
-Score: 1.7373759177373305
-Title: 청문회 D-3...'출근길 말말말'로 본 유상임 과기정통부 후보자는
-Date: 2024-08-05 17:16:19
-Author: 채성오 기자
-Like Count: 3
-Url: https://n.news.naver.com/mnews/article/138/0002179231
---------
 
 ### Finished
 
