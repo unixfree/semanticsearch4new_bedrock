@@ -42,7 +42,6 @@ Quick tips on Python virtual environments (please folow this unless you are an e
 
 2. Required environment variables that you must configure in env_temp
   ```
-  OPENAPI_API_KEY="<OPENAI_API_KEY>"
   EMBEDDING_MODEL=text-embedding-ada-002
   DB_CONN_STR="<Connect Sting of your Couchbase server>"
   DB_USERNAME="<username_for_couchbase_cluster>"
