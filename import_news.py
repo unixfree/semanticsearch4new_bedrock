@@ -24,7 +24,6 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_BUCKET = os.getenv("DB_BUCKET")
 DB_SCOPE = os.getenv("DB_SCOPE")
 DB_COLLECTION = os.getenv("DB_COLLECTION")
-INDEX_NAME = os.getenv("INDEX_NAME")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
 
 class TitanEmbeddings:
