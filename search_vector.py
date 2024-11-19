@@ -108,7 +108,7 @@ def hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_t
         # N1QL을 사용한 KNN 및 필터 검색
         query = f"""
         SELECT title, date, author, url, like_count, SEARCH_SCORE() AS score
-        FROM `vectordemo`.semantic.article AS t1
+        FROM `travel-sample`.semantic.article AS t1
         WHERE author like "%기자"
         AND like_count >= 1
 	AND SEARCH(t1, {{
