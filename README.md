@@ -31,8 +31,8 @@ Quick tips on Python virtual environments (please folow this unless you are an e
 - The above works for *bash* or *zsh*, however you would use `. .venv/bin/activate` if you are using *sh*
 
 - Now download this git repo and cd into it.<br><br>
-`git clone https://github.com/unixfree/semanticsearch4news.git`<br>
-`cd semanticsearch4news`
+`git clone https://github.com/unixfree/semanticsearch4news_bedrock.git`<br>
+`cd semanticsearch4news_bedrock`
 
 ### How to Configure
 
@@ -42,14 +42,14 @@ Quick tips on Python virtual environments (please folow this unless you are an e
 
 2. Required environment variables that you must configure in env_temp
   ```
-  EMBEDDING_MODEL=text-embedding-ada-002
-  DB_CONN_STR="<Connect Sting of your Couchbase server>"
-  DB_USERNAME="<username_for_couchbase_cluster>"
-  DB_PASSWORD="<password_for_couchbase_cluster>"
-  DB_BUCKET="<bucket_for_couchbase_cluster>"
-  DB_SCOPE="<scope_for_couchbase_cluster>"
-  DB_COLLECTION="<collection_for_couchbase_cluster>"
-  INDEX_NAME="<index name for vector search in FTS>"
+  EMBEDDING_MODEL=amazon.titan-embed-text-v2:0
+  DB_CONN_STR=couchbase://localhost
+  DB_USERNAME=Administrator
+  DB_PASSWORD=password
+  DB_BUCKET=travel-sample
+  DB_SCOPE=semantic
+  DB_COLLECTION=article
+  INDEX_NAME=arcticle_idx
   ```
 
 3. Copy the template environment template
