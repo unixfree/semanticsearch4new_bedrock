@@ -23,7 +23,6 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_BUCKET = os.getenv("DB_BUCKET")
 DB_SCOPE = os.getenv("DB_SCOPE")
 DB_COLLECTION = os.getenv("DB_COLLECTION")
-INDEX_NAME = os.getenv("INDEX_NAME")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
 
 # Couchbase 클러스터 연결 설정
@@ -32,7 +31,6 @@ cluster = Cluster.connect(DB_CONN_STR, ClusterOptions(auth))
 bucket = cluster.bucket(DB_BUCKET)
 scope = bucket.scope(DB_SCOPE)
 collection = scope.collection(DB_COLLECTION)
-article_index_name = INDEX_NAME  # 인덱스 이름 설정
 
 class TitanEmbeddings:
     def __init__(self, model_id=EMBEDDING_MODEL):
@@ -65,12 +63,11 @@ def generate_vector_with_bedrock(text):
     return embedding
 
 # 벡터 검색 수행 함수 (FTS)
-def vector_search_with_fts(cluster, scope, article_index_name, query_vector):
+def vector_search_with_fts(cluster, scope, query_vector):
     """
     Couchbase 벡터 검색을 수행합니다.
     :param cluster: Couchbase 클러스터
     :param scope: Couchbase 스코프
-    :param article_index_name: FTS 인덱스 이름
     :param query_vector: 검색할 벡터
     """
     try:
@@ -80,7 +77,7 @@ def vector_search_with_fts(cluster, scope, article_index_name, query_vector):
         request = search.SearchRequest.create(vector_search)
 
         # 검색 수행
-        result = scope.search(article_index_name, request)
+        result = scope.search('article_idx', request)
 
         print(f"FTS Vector Search results:")
         for row in result.rows():
@@ -88,6 +85,7 @@ def vector_search_with_fts(cluster, scope, article_index_name, query_vector):
             doc = collection.get(row.id)
             doc_content = doc.content_as[dict]  # 문서를 사전 형식으로 변환
             print(f"Title: {doc_content['title']}")
+	    print(f"Author: {doc_content['author']}")
             print(f"Date: {doc_content['date']}")
             print(f"Url: {doc_content['url']}")
             print("--------")
@@ -116,8 +114,7 @@ def hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_t
             }})
         AND SEARCH(t1, {{
                 "query": {{"match_none": {{}}}},
-                "knn": [{{"field": "article_vector", "vector": {article_vector}, "k": 5}}],
-                "knn": [{{"field": "title_vector", "vector": {title_vector}, "k": 5}}]
+                "knn": [{{"field": "article_vector", "vector": {article_vector}, "k": 5}}]
             }})
         ORDER BY score,date DESC
         """
@@ -155,7 +152,7 @@ def main():
         return
 
     # FTS 벡터 검색 수행
-    vector_search_with_fts(cluster, scope, article_index_name, article_vector)
+    vector_search_with_fts(cluster, scope, article_vector)
 
     # SQL++ 하이브리드 검색 수행
     hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_text)
