@@ -1,8 +1,8 @@
 EMBEDDING_MODEL=amazon.titan-embed-text-v2:0
-DB_CONN_STR=couchbases://
-DB_USERNAME=admin
-DB_PASSWORD=Passw0rd1!
-DB_BUCKET=vectordemo
+DB_CONN_STR=couchbase://localhost
+DB_USERNAME=Administrator
+DB_PASSWORD=password
+DB_BUCKET=travel-sample
 DB_SCOPE=semantic
 DB_COLLECTION=article
-INDEX_NAME=article_idx
+INDEX_NAME=arcticle_idx
