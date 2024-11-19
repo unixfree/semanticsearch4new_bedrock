@@ -49,7 +49,6 @@ Quick tips on Python virtual environments (please folow this unless you are an e
   DB_BUCKET=travel-sample
   DB_SCOPE=semantic
   DB_COLLECTION=article
-  INDEX_NAME=arcticle_idx
   ```
 
 3. Copy the template environment template
@@ -75,8 +74,8 @@ Quick tips on Python virtual environments (please folow this unless you are an e
 
   `python3 search_vector.py` <br>
   
-   Enter text to vector search in article : 김정숙  <br>
-   Enter text to test search in title : 청문회
+   Enter text to vector search in article : 수수료  <br>
+   Enter text to test search in title : 배달앱
 
 ### Finished
 
