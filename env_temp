@@ -5,4 +5,3 @@ DB_PASSWORD=password
 DB_BUCKET=travel-sample
 DB_SCOPE=semantic
 DB_COLLECTION=article
-INDEX_NAME=arcticle_idx
