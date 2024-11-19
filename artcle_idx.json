@@ -2,7 +2,7 @@
   "type": "fulltext-index",
   "name": "article_idx",
   "sourceType": "gocbcore",
-  "sourceName": "vectordemo",
+  "sourceName": "travel-sample",
   "planParams": {
     "maxPartitionsPerPIndex": 1024,
     "indexPartitions": 1
