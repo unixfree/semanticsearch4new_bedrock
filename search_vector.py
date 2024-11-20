@@ -104,7 +104,7 @@ def hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_t
     try:
         # N1QL을 사용한 KNN 및 필터 검색
         query = f"""
-        SELECT title, date, author, url, like_count, search_score() AS score
+        SELECT title, author, date, url, like_count, search_score() AS score
         FROM `travel-sample`.semantic.article AS t1
         WHERE author like "%기자"
         AND like_count >= 1
@@ -127,10 +127,10 @@ def hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_t
         for row in result:
             #print(f"Score: {row['score']}")
             print(f"Title: {row['title']}")
-            print(f"Date: {row['date']}")
             print(f"Author: {row['author']}")
-            print(f"Like Count: {row['like_count']}")
+            print(f"Date: {row['date']}")
             print(f"Url: {row['url']}")
+            print(f"Like Count: {row['like_count']}")
             print("--------")
     except CouchbaseException as e:
         print(f"Hybrid search failed: {e}")
