@@ -85,7 +85,6 @@ def vector_search_with_fts(cluster, scope, query_vector):
             doc = collection.get(row.id)
             doc_content = doc.content_as[dict]  # 문서를 사전 형식으로 변환
             print(f"Title: {doc_content['title']}")
-	    print(f"Author: {doc_content['author']}")
             print(f"Date: {doc_content['date']}")
             print(f"Url: {doc_content['url']}")
             print("--------")
