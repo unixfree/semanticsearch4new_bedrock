@@ -196,7 +196,7 @@ def store_in_couchbase(collection, article_info):
         "comment_count": article_info['comment_count'],
         "article_vector": article_vector,
         "title_vector": title_vector,
-        "vector_model": "amazon.titan-embed-text-v2:0"
+        "vector_model": EMBEDDING_MODEL
     }
     
     # Couchbase에 문서 저장
