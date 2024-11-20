@@ -125,7 +125,7 @@ def hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_t
         print("")
         print(f"SQL++ Hybrid Search results:", result)
         for row in result:
-            print(f"Score: {row['score']}")
+            #print(f"Score: {row['score']}")
             print(f"Title: {row['title']}")
             print(f"Date: {row['date']}")
             print(f"Author: {row['author']}")
@@ -139,8 +139,8 @@ def hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_t
 def main():
 
     # 검색할 텍스트 입력
-    article_text = input("Enter text to vector search in article : ")
     title_text = input("Enter text to test search in title : ")
+    article_text = input("Enter text to vector search in article : ")
 
     # 텍스트를 벡터로 변환
     article_vector = generate_vector_with_bedrock(article_text)
