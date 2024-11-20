@@ -107,7 +107,7 @@ def hybrid_vector_search_with_sql(cluster, article_vector, title_vector, title_t
         SELECT title, author, date, url, like_count, search_score() AS score
         FROM `travel-sample`.semantic.article AS t1
         WHERE author like "%기자"
-        AND like_count >= 1
+        AND like_count >= 0
 	AND SEARCH(t1, {{
                 "query": {{"match": "{title_text}","field":"title"}}
             }})
